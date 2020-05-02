@@ -12,6 +12,7 @@ namespace CasaDoCodigo
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Produto>().HasKey(p => p.Id);
         }
     }
