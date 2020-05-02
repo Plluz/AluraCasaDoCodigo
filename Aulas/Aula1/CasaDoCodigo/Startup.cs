@@ -28,6 +28,9 @@ namespace CasaDoCodigo
             );
 
             services.AddTransient<IDataService, DataService>();
+            services.AddTransient<ICadastroRepository, CadastroRepository>();
+            services.AddTransient<IItemPedidoRepository, ItemPedidoRepository>();
+            services.AddTransient<IPedidoRepository, PedidoRepository>();
             services.AddTransient<IProdutoRepository, ProdutoRepository>();
         }
 
