@@ -7,10 +7,12 @@ namespace CasaDoCodigo.Repositories
     public class ProdutoRepository : IProdutoRepository
     {
         private readonly ApplicationContext contexto;
+        private readonly Microsoft.EntityFrameworkCore.DbSet<Produto> dbSet;
 
         public ProdutoRepository(ApplicationContext contexto)
         {
             this.contexto = contexto;
+            dbSet = contexto.Set<Produto>();
         }
 
         public IList<Produto> GetProdutos()
@@ -22,7 +24,10 @@ namespace CasaDoCodigo.Repositories
         {
             foreach (var livro in livros)
             {
-                contexto.Set<Produto>().Add(new Produto(livro.Codigo, livro.Nome, livro.Preco));
+                if (!dbSet.Where(p => p.Codigo == livro.Codigo).Any())
+                {
+                    dbSet.Add(new Produto(livro.Codigo, livro.Nome, livro.Preco));
+                }
             }
             contexto.SaveChanges();
         }
