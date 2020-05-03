@@ -39,5 +39,11 @@ namespace CasaDoCodigo.Controllers
         {
             return View(pedidoRepository.GetPedido());
         }
+
+        [HttpPost]
+        public void UpdateQuantidade([FromBody]ItemPedido itemPedido)
+        {
+
+        }
     }
 }
