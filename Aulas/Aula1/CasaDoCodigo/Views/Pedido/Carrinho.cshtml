@@ -39,7 +39,7 @@
                     <div class="input-group">
 
                         <span class="input-group-btn">
-                            <button class="btn btn-default">
+                            <button class="btn btn-default" onclick="carrinho.clickDecrementar(this)">
                                 <span class="glyphicon-minus"></span>
                             </button>
                         </span>
@@ -47,7 +47,7 @@
                         <input type="text" value="@(item.Quantidade)" class="form-control text-center" />
 
                         <span class="input-group-btn">
-                            <button class="btn btn-default" onclick="clickIncremento(this)">
+                            <button class="btn btn-default" onclick="carrinho.clickIncrementar(this)">
                                 <span class="glyphicon-plus"></span>
                             </button>
                         </span>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="col-md-2">
                     R$ <span class="pull-right" subtotal>
-                        @(item.Produto.Preco * item.Quantidade) 
+                        @(item.Produto.Preco * item.Quantidade)
                     </span>
                 </div>
             </div>
@@ -94,24 +94,6 @@
 
 @section Scripts
 {
-    <script type="text/javascript">
-        function clickIncremento(btn) {
-            var itemId = $(btn).parents('[item-id]').attr('item-id');
-            var novaQtd = $(btn).parents('[item-id]').find('input').val() + 1;
-            var data = {
-                Id = itemId,
-                Quantidade = novaQtd
-            };
-
-            $.ajax({
-                url: '/pedido/updatequantidade',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(data)
-            });
-
-            debugger;
-        }
-    </script>
+    <script type="text/javascript" src="~/js/carrinho.js"></script>
 }
 

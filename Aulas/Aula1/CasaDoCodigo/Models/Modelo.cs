@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
@@ -87,6 +88,11 @@ namespace CasaDoCodigo.Models
             Produto = produto;
             Quantidade = quantidade;
             PrecoUnitario = precoUnitario;
+        }
+
+        internal void UpdateQuantidade(int quantidade)
+        {
+            Quantidade = quantidade;
         }
     }
 

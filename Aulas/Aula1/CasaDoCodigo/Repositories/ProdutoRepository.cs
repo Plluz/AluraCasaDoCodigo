@@ -12,7 +12,7 @@ namespace CasaDoCodigo.Repositories
 
         public IList<Produto> GetProdutos()
         {
-            return contexto.Set<Produto>().ToList();
+            return dbSet.ToList();
         }
 
         public void GravarProdutos(List<Livro> livros)
