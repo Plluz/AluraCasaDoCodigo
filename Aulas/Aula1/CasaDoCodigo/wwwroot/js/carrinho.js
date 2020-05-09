@@ -19,8 +19,9 @@ class Carrinho {
     }
 
     getData(elemento) {
-        var itemId = $(elemento).parents('[item-id]').attr('item-id');
-        var novaQtd = $(elemento).parents('[item-id]').find('input').val();
+        var elementoComItemId = $(elemento).parents('[item-id]');
+        var itemId = $(elementoComItemId).attr('item-id');
+        var novaQtd = $(elementoComItemId).find('input').val();
 
         return {
             Id: itemId,
@@ -35,9 +36,16 @@ class Carrinho {
             contentType: 'application/json',
             data: JSON.stringify(data)
         }).done(function (response) {
-            
+            let itemPedido = response.itemPedido;
+            let elementoComItemId = $('[item-id=' + itemPedido.id + ']');
+            elementoComItemId.find('input').val(itemPedido.quantidade);
+            elementoComItemId.find('[subtotal]').html((itemPedido.subtotal).valorContabil());
         });
     }
 }
 
 var carrinho = new Carrinho();
+
+Number.prototype.valorContabil = function () {
+    return this.toFixed(2).replace('.',',');
+}
