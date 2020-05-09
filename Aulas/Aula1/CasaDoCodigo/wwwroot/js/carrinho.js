@@ -18,8 +18,8 @@ class Carrinho {
         var novaQtd = $(elemento).parents('[item-id]').find('input').val();
 
         return {
-            Id = itemId,
-            Quantidade = novaQtd
+            Id: itemId,
+            Quantidade: novaQtd
         };
     }
 
@@ -31,7 +31,6 @@ class Carrinho {
             data: JSON.stringify(data)
         });
     }
-
 }
 
 var carrinho = new Carrinho();
