@@ -37,9 +37,19 @@ class Carrinho {
             data: JSON.stringify(data)
         }).done(function (response) {
             let itemPedido = response.itemPedido;
+            debugger;
+
             let elementoComItemId = $('[item-id=' + itemPedido.id + ']');
             elementoComItemId.find('input').val(itemPedido.quantidade);
             elementoComItemId.find('[subtotal]').html((itemPedido.subtotal).valorContabil());
+
+            let carrinhoViewModel = response.carrinho;
+            $('[numero-itens]').html('Total: ' + carrinhoViewModel.itens.length + ' itens');
+            $('[total]').html((carrinhoViewModel.total).valorContabil());
+
+            if (itemPedido.quantidade < 1) {
+                elementoComItemId.remove();
+            }
         });
     }
 }
