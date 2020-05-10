@@ -9,5 +9,10 @@ namespace CasaDoCodigo.Repositories
         public CadastroRepository(ApplicationContext contexto) : base(contexto)
         {
         }
+
+        public CadastroRepository Update(int cadastroId, Cadastro novoCadastro)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
